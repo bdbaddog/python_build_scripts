@@ -14,6 +14,7 @@ mkdir -p ${kits_dir}
 
 libxml2_version=2.9.8
 libxslt_version=1.1.32
+openssl_version=1.1.0h
 
 
 #sudo apt-get install build-essential
@@ -40,7 +41,7 @@ export PATH=${install_dir}/bin:$PATH
 mkdir -p ${install_dir}/lib
 
 pushd Python-${python_version}
-./configure --prefix=${install_dir} --enable-shared --enable-unicode LDFLAGS="-Wl,-rpath=${install_dir}/lib" --with-openssl=/home/sconsbuildbot/stow/openssl-1.1.0h/
+./configure --prefix=${install_dir} --enable-shared --enable-unicode LDFLAGS="-Wl,-rpath=${install_dir}/lib" --with-openssl=${base_dir}/stow/openssl-${openssl_version}/
 make 2>&1 | tee BUILD.log
 make install 2>&1 | tee -a BUILD.log
 popd
