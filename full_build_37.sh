@@ -4,7 +4,7 @@ set -e
 set -x
 
 base_dir=${HOME}/stow
-python_version=2.7.14
+python_version=3.7.0
 python_dir=python-${python_version}
 kits_dir=${base_dir}/kits
 install_dir=${base_dir}/${python_dir}
@@ -40,9 +40,9 @@ export PATH=${install_dir}/bin:$PATH
 mkdir -p ${install_dir}/lib
 
 pushd Python-${python_version}
-./configure --prefix=${install_dir} --enable-shared --enable-unicode LDFLAGS="-Wl,-rpath=${install_dir}/lib"
-make
-make install
+./configure --prefix=${install_dir} --enable-shared --enable-unicode LDFLAGS="-Wl,-rpath=${install_dir}/lib" --with-openssl=/home/sconsbuildbot/stow/openssl-1.1.0h/
+make 2>&1 | tee BUILD.log
+make install 2>&1 | tee -a BUILD.log
 popd
 
 pushd libxml2-${libxml2_version}
@@ -57,9 +57,4 @@ make
 make install
 popd
 
-# First get the script:
-wget https://bootstrap.pypa.io/get-pip.py
- 
-# Then execute it using Python 2.7 and/or Python 3.6:
-python2.7 get-pip.py
-
+pip install -U pip wheel setuptools

@@ -3,8 +3,8 @@
 set -e
 set -x
 
-base_dir=${HOME}/stow
-python_version=2.7.14
+base_dir=${HOME}/tools
+python_version=3.5.1
 python_dir=python-${python_version}
 kits_dir=${base_dir}/kits
 install_dir=${base_dir}/${python_dir}
@@ -12,9 +12,7 @@ install_dir=${base_dir}/${python_dir}
 mkdir -p ${base_dir}/${python_dir}/lib
 mkdir -p ${kits_dir}
 
-libxml2_version=2.9.8
-libxslt_version=1.1.32
-
+libxml2_version=2.9.3
 
 #sudo apt-get install build-essential
 #sudo apt-get build-dep python2.7
@@ -28,38 +26,33 @@ if [ ! -f libxml2-${libxml2_version}.tar.gz ]; then
     wget ftp://xmlsoft.org/libxml2/libxml2-${libxml2_version}.tar.gz
 fi
 
-if [ ! -f libxslt-${libxslt_version}.tar.gz ]; then
-    wget ftp://xmlsoft.org/libxml2/libxslt-${libxslt_version}.tar.gz
+if [ ! -f libxslt-1.1.28.tar.gz ]; then
+    wget ftp://xmlsoft.org/libxml2/libxslt-1.1.28.tar.gz
 fi
 
 tar xvfz Python-${python_version}.tgz
 tar xvfz libxml2-${libxml2_version}.tar.gz
-tar xvfz libxslt-${libxslt_version}.tar.gz
+tar xvfz libxslt-1.1.28.tar.gz
 
 export PATH=${install_dir}/bin:$PATH
 mkdir -p ${install_dir}/lib
 
 pushd Python-${python_version}
-./configure --prefix=${install_dir} --enable-shared --enable-unicode LDFLAGS="-Wl,-rpath=${install_dir}/lib"
+LDFLAGS="-Wl,-rpath=$HOME/tools/python-${python_version}/lib" ./configure --prefix=${install_dir} --enable-shared --enable-unicode
 make
 make install
 popd
 
 pushd libxml2-${libxml2_version}
-./configure --prefix=${install_dir} --enable-shared --with-python=${install_dir} LDFLAGS="-Wl,-rpath=${install_dir}/lib"
+make distclean || true
+LDFLAGS="-Wl,-rpath=$HOME/tools/python-${python_version}/lib" ./configure --prefix=${install_dir} --enable-shared --with-python=${install_dir}/bin/python3
 make
 make install
 popd
 
-pushd libxslt-${libxslt_version}
-./configure --prefix=${install_dir} --enable-shared LDFLAGS="-Wl,-rpath=${install_dir}/lib"
+pushd libxslt-1.1.28
+LDFLAGS="-Wl,-rpath=$HOME/tools/python-${python_version}/lib" ./configure --prefix=${install_dir} --enable-shared --with-python=${install_dir}/bin/python3
 make
 make install
 popd
-
-# First get the script:
-wget https://bootstrap.pypa.io/get-pip.py
- 
-# Then execute it using Python 2.7 and/or Python 3.6:
-python2.7 get-pip.py
 
