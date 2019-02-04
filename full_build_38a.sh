@@ -3,6 +3,11 @@
 set -e
 set -x
 
+echo << BLAH
+If this fails on ubuntu, you may need to run this command:
+sudo apt-get install -y build-essential git libexpat1-dev libssl-dev zlib1g-dev   libncurses5-dev libbz2-dev liblzma-dev   libsqlite3-dev libffi-dev tcl-dev linux-headers-generic libgdbm-dev   libreadline-dev tk tk-dev
+BLAH
+
 base_dir=${HOME}/tools
 python_version=3.8.0a1
 #https://www.python.org/ftp/python/3.8.0/Python-3.8.0a1.tgz
