@@ -4,7 +4,7 @@ set -e
 set -x
 
 base_dir=${HOME}/stow
-python_version=3.7.0
+python_version=3.7.2
 python_dir=python-${python_version}
 kits_dir=${base_dir}/kits
 install_dir=${base_dir}/${python_dir}
@@ -41,7 +41,7 @@ export PATH=${install_dir}/bin:$PATH
 mkdir -p ${install_dir}/lib
 
 pushd Python-${python_version}
-./configure --prefix=${install_dir} --enable-shared --enable-unicode LDFLAGS="-Wl,-rpath=${install_dir}/lib" --with-openssl=${base_dir}/stow/openssl-${openssl_version}/
+./configure --prefix=${install_dir} --enable-shared  LDFLAGS="-Wl,-rpath=${install_dir}/lib" --with-openssl=${base_dir}/stow/openssl-${openssl_version}/
 make 2>&1 | tee BUILD.log
 make install 2>&1 | tee -a BUILD.log
 popd

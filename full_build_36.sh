@@ -4,7 +4,7 @@ set -e
 set -x
 
 base_dir=${HOME}/tools
-python_version=3.6.1
+python_version=3.6.8
 python_dir=python-${python_version}
 kits_dir=${base_dir}/kits
 install_dir=${base_dir}/${python_dir}
