@@ -3,8 +3,8 @@
 set -e
 set -x
 
-base_dir=${HOME}/stow
-python_version=3.7.2
+base_dir=${HOME}/tools
+python_version=3.7.3
 python_dir=python-${python_version}
 kits_dir=${base_dir}/kits
 install_dir=${base_dir}/${python_dir}
@@ -14,7 +14,7 @@ mkdir -p ${kits_dir}
 
 libxml2_version=2.9.8
 libxslt_version=1.1.32
-openssl_version=1.1.0h
+openssl_version=1.1.1b
 
 
 #sudo apt-get install build-essential

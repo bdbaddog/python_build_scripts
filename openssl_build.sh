@@ -3,8 +3,8 @@
 set -e
 set -x
 
-base_dir=${HOME}/stow
-openssl_version=1.1.0h
+base_dir=${HOME}/tools
+openssl_version=1.1.1b
 openssl_dir=openssl-${openssl_version}
 kits_dir=${base_dir}/kits
 install_dir=${base_dir}/${openssl_dir}
@@ -14,7 +14,7 @@ mkdir -p ${kits_dir}
 
 
 export OPENSSL=${openssl_version}
-export OPENSSL_DIR="$HOME/stow/openssl/${OPENSSL}"
+export OPENSSL_DIR="${install_dir}/${OPENSSL}"
 export PATH="${OPENSSL_DIR}/bin:$PATH"
 export CFLAGS="-I${OPENSSL_DIR}/include"
 export LDFLAGS="-L${OPENSSL_DIR}/lib"
@@ -25,7 +25,7 @@ export LD_RUN_PATH="${OPENSSL_DIR}/lib"
 
 pushd ${kits_dir}
 if [ ! -f openssl-${openssl_version}.tar.gz ]; then
-    wget  https://www.openssl.org/source/openssl-1.1.0h.tar.gz
+    wget  https://www.openssl.org/source/openssl-${openssl_version}.tar.gz
 fi
 
 tar xvfz openssl-${openssl_version}.tar.gz
