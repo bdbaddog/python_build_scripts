@@ -9,8 +9,8 @@ sudo apt-get install -y build-essential git libexpat1-dev libssl-dev zlib1g-dev 
 BLAH
 
 base_dir=${HOME}/tools
-python_version=3.8.0a2
-#https://www.python.org/ftp/python/3.8.0/Python-3.8.0a1.tgz
+python_version=3.8.1
+#https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
 python_dir=python-${python_version}
 kits_dir=${base_dir}/kits
 install_dir=${base_dir}/${python_dir}
@@ -25,8 +25,7 @@ libxml2_version=2.9.3
 
 pushd ${kits_dir}
 if [ ! -f Python-${python_version}.tgz ]; then
-#    wget https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
-    wget https://www.python.org/ftp/python/3.8.0/Python-${python_version}.tgz
+    wget https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
 fi
 
 if [ ! -f libxml2-${libxml2_version}.tar.gz ]; then
