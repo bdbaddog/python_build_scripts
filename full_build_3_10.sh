@@ -11,7 +11,7 @@ sudo apt-get install -y build-essential git libexpat1-dev libssl-dev zlib1g-dev 
 BLAH
 
 base_dir=${HOME}/tools
-python_version=3.10.0a4
+python_version=3.10.0b4
 python_dir=3.10.0
 #https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
 # https://www.python.org/ftp/python/3.10.0/Python-3.10.0a4.tgz

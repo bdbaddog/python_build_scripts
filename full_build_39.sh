@@ -11,8 +11,8 @@ sudo apt-get install -y build-essential git libexpat1-dev libssl-dev zlib1g-dev 
 BLAH
 
 base_dir=${HOME}/tools
-python_version=3.9.0b1
-python_dir=3.9.0
+python_version=3.9.6
+python_dir=3.9.6
 #https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
 #python_dir=python-${python_dir_version}
 kits_dir=${base_dir}/kits
@@ -21,7 +21,7 @@ install_dir=${base_dir}/python-${python_dir}
 mkdir -p ${base_dir}/${python_dir}/lib
 mkdir -p ${kits_dir}
 
-libxml2_version=2.9.3
+#libxml2_version=2.9.3
 
 
 pushd ${kits_dir}

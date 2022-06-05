@@ -9,7 +9,7 @@ sudo apt-get install -y build-essential git libexpat1-dev libssl-dev zlib1g-dev 
 BLAH
 
 base_dir=${HOME}/tools
-python_version=3.8.3
+python_version=3.8.11
 #https://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
 python_dir=python-${python_version}
 kits_dir=${base_dir}/kits
